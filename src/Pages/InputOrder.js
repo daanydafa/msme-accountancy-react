@@ -2,8 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { createOrder } from '../Services/Api';
 import FormInput from '../Components/FormInput';
 import FormLayout from '../Layouts/FormLayout';
+import Loading from '../Components/Loading';
+import { useState } from 'react';
 
 const InputOrder = () => {
+    const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
     const staticFields = [
@@ -40,12 +44,25 @@ const InputOrder = () => {
 
     const handleSubmit = async (data) => {
         data.completion_date = Math.floor(new Date(data.completion_date).getTime() / 1000);
-        console.log('Order Data:', data);
-        await createOrder(data);
-        navigate(`/orders/`);
-
+        setErrors({});
+        try {
+            setIsLoading(true);
+            const response = await createOrder(data);
+            console.log(response);
+            navigate(-1);
+            setTimeout(() => {
+                navigate(`/orders/${response.id}`);
+            }, 100);
+        } catch (error) {
+            setErrors({ general: error });
+        } finally {
+            setIsLoading(false);
+        }
     };
 
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <FormLayout>
             <FormInput

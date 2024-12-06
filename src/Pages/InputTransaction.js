@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react'
 import { createTransaction } from '../Services/Api';
 import FormInput from '../Components/FormInput';
 import FormLayout from '../Layouts/FormLayout';
+import Loading from '../Components/Loading';
 
 const InputTransaction = () => {
     const [formFields, setFormFields] = useState([]);
     const [selectedType, setSelectedType] = useState('expense');
     const [selectedDetailedType, setSelectedDetailedType] = useState('operational');
     const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -84,11 +86,10 @@ const InputTransaction = () => {
     };
 
     const handleSubmit = async (data) => {
-
         data.order_id = id;
         setErrors({});
         try {
-
+            setIsLoading(true);
             await createTransaction(data);
             navigate(-1);
             setTimeout(() => {
@@ -96,8 +97,14 @@ const InputTransaction = () => {
             }, 100);
         } catch (error) {
             setErrors({ general: error });
+        } finally {
+            setIsLoading(false);
         }
     };
+
+    if (isLoading) {
+        return <Loading />;
+    }
 
     return (
         <FormLayout>
