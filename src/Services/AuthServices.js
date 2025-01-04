@@ -45,7 +45,6 @@ class AuthService {
         await this.axiosInstance.post('/logout');
       }
     } finally {
-      // window.location.href = '/login';
       this.clearSession();
     }
   }

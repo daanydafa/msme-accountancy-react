@@ -107,11 +107,22 @@ export default function MainLayout() {
                     </h1>
                 </div>
             </header>
-            <main className={`mx-auto max-w-7xl pt-40 pb-20 ${activeNavItem?.name !== 'Orders' ? 'bg-gray-200' : 'bg-white'} min-h-screen`}>
-                <div>
+            <main
+                className={`
+                    flex 
+                    justify-center 
+                    items-center 
+                    mx-auto 
+                    max-w-7xl   
+                    ${activeNavItem?.name !== 'Orders' ? 'bg-gray-200' : 'bg-white'} 
+                    min-h-screen
+                    `}
+            >
+                <div className="w-full">
                     <Outlet context={{ currentMonth, currentYear }} />
                 </div>
             </main>
+
 
             <Disclosure as="nav" className="block md:hidden bg-gray-800 px-28 w-full fixed bottom-0 z-10">
                 <div className="flex w-full h-auto items-center justify-between">

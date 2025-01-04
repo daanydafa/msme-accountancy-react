@@ -31,10 +31,11 @@ export default function Reports() {
     const fetchReportData = async () => {
         setIsLoading(true);
         setError(null);
-
         try {
             const data = await showReportsByMonth(month, year);
             setMonthlyReports(data);
+            console.log(data);
+
         } catch (err) {
             setError(err.message || 'Gagal mengambil data laporan');
             console.error('Error fetching reports:', err);
@@ -48,7 +49,11 @@ export default function Reports() {
     }, [month, year]);
 
     if (isLoading) {
-        return <Loading />;
+        return (
+            <div className='h-96'>
+                <Loading />
+            </div>
+        );
     }
 
     const getMonthName = () => {
@@ -76,54 +81,56 @@ export default function Reports() {
             </div>
         );
     }
-    
+
     const { data, transactions } = monthlyReports;
 
     return (
-        <div className="mx-auto max-w-7xl bg-gray-200 py-10 tracking-wide text-xl text-gray-900">
-            <div className="space-y-5 mx-10">
-                <div className="flex justify-end gap-4">
-                    <MonthSelectorInput
-                        selectedMonth={month}
-                        onChangeMonth={handleChangeMonth}
-                    />
-                    <YearSelectorInput
-                        selectedYear={year}
-                        onChangeYear={handleChangeYear}
-                    />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                    <AmountSummary
-                        type="income"
-                        amount={data.totalIncome}
-                        qty={data.incomeCount}
-                    />
-                    <AmountSummary
-                        type="expense"
-                        amount={data.totalExpense}
-                        qty={data.expenseCount}
-                    />
-                </div>
-                <section className="bg-white rounded-lg shadow ">
-                    <h2 className="text-md font-medium uppercase p-4 border-b">
-                        Sebaran Arus Kas
-                    </h2>
-                    <DonutChart percentage={data.percentage} />
-                </section>
+        <div className="min-h-screen bg-gray-200 pt-40 pb-20">
+            <div className="mx-auto max-w-7xl py-10 tracking-wide text-xl text-gray-900">
+                <div className="space-y-5 mx-10">
+                    <div className="flex justify-end gap-4">
+                        <MonthSelectorInput
+                            selectedMonth={month}
+                            onChangeMonth={handleChangeMonth}
+                        />
+                        <YearSelectorInput
+                            selectedYear={year}
+                            onChangeYear={handleChangeYear}
+                        />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                        <AmountSummary
+                            type="income"
+                            amount={data.totalIncome}
+                            qty={data.incomeCount}
+                        />
+                        <AmountSummary
+                            type="expense"
+                            amount={data.totalExpense}
+                            qty={data.expenseCount}
+                        />
+                    </div>
+                    <section className="bg-white rounded-lg shadow ">
+                        <h2 className="text-md font-medium uppercase p-4 border-b">
+                            Sebaran Arus Kas
+                        </h2>
+                        <DonutChart percentage={data.percentage} />
+                    </section>
 
-                <section className="bg-white rounded-lg shadow">
-                    <h2 className="text-md font-medium uppercase p-4 border-b">
-                        Daftar Transaksi
-                    </h2>
-                    <TransactionTable transactions={transactions} isMinimize={true} />
-                </section>
+                    <section className="bg-white rounded-lg shadow">
+                        <h2 className="text-md font-medium uppercase p-4 border-b">
+                            Daftar Transaksi
+                        </h2>
+                        <TransactionTable transactions={transactions.data} isMinimize={true} />
+                    </section>
 
-                <section className="bg-white rounded-lg shadow">
-                    <h2 className="text-md font-medium uppercase p-4 border-b">
-                        Ringkasan Reimbursement
-                    </h2>
-                    <ReimbursmentSummary reimbursements={data.reimbursements} onUpdate={fetchReportData} />
-                </section>
+                    <section className="bg-white rounded-lg shadow">
+                        <h2 className="text-md font-medium uppercase p-4 border-b">
+                            Ringkasan Reimbursement
+                        </h2>
+                        <ReimbursmentSummary reimbursements={data.reimbursements} onUpdate={fetchReportData} />
+                    </section>
+                </div>
             </div>
         </div>
     );

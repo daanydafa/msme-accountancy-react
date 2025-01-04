@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const FormInput = ({ fields, dynamicFields = [], onSubmit, initialData = {}, validator, context, onTypeChange, onDetailedTypeChange }) => {
     const [values, setValues] = useState(initialData);

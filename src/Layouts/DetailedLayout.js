@@ -45,7 +45,7 @@ export default function DetailedLayout() {
                 </div>
             </header>
             <main className='min-h-screen'>
-                <div className="max-w-7xl pt-24">
+                <div className="max-w-7xl">
                     <Outlet />
                 </div>
             </main>

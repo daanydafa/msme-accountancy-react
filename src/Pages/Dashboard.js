@@ -16,8 +16,6 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchReportData = async () => {
       setIsLoading(true);
-      setError(null);
-
       try {
         setMonthlyReports(await showReportsByMonth(currentMonth, currentYear));
         setOrderList(await ongoingOrders());
@@ -32,21 +30,6 @@ export default function Dashboard() {
     fetchReportData();
   }, [currentMonth, currentYear]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (error) {
-    return (
-      <div className="mx-auto max-w-7xl bg-red-100 py-10 text-center">
-        <p className="text-red-600">{error}</p>
-      </div>
-    );
-  }
-
-  if (!monthlyReports) {
-    return null;
-  }
 
   const { data, transactions } = monthlyReports;
 
@@ -68,17 +51,39 @@ export default function Dashboard() {
       </div>
     );
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mx-auto max-w-7xl bg-red-100 py-10 text-center">
+        <p className="text-red-600">{error}</p>
+      </div>
+    );
+  }
+
+  if (!monthlyReports) {
+    return null;
+  }
+
   return (
-    <div className="mx-auto max-w-7xl bg-gray-200 py-10">
-      <div className="space-y-5 mx-10 text-xl">
-        <h2 className="text-2xl font-bold uppercase tracking-wide text-gray-900">
-          Sebaran Arus Kas Bulan Ini
-        </h2>
-        {renderTransactionsSection()}
-        <h2 className="text-2xl font-bold uppercase tracking-wide text-gray-900">
-          Pesanan Dalam Proses
-        </h2>
-        {renderOrderSection()}
+    <div className="min-h-screen bg-gray-200 pt-40 pb-20">
+      <div className="mx-auto max-w-7xl py-10">
+        <div className="space-y-5 mx-10 text-xl">
+          <h2 className="text-2xl font-bold uppercase tracking-wide text-gray-900">
+            Sebaran Arus Kas Bulan Ini
+          </h2>
+          {renderTransactionsSection()}
+          <h2 className="text-2xl font-bold uppercase tracking-wide text-gray-900">
+            Pesanan Dalam Proses
+          </h2>
+          {renderOrderSection()}
+        </div>
       </div>
     </div>
   );

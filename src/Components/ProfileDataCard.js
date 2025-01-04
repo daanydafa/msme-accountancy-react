@@ -1,6 +1,4 @@
 export default function ProfileDataCard({ data }) {
-
-
     return (
         <div className="w-full md:w-3/4 bg-base-100 bg-white rounded-xl p-10">
             <div className="flex flex-col items-center justify-center">

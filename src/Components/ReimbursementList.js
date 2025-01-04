@@ -59,66 +59,69 @@ const ReimbursementList = ({ transactionIds, onClose, onUpdate }) => {
                 >
                     X
                 </button>
-                <div className="w-full overflow-x-auto">
-                    {isLoading && (
-                        <Loading />
-                    )}
-                    <table className="min-w-full bg-white rounded-lg">
-                        <thead className="bg-white text-gray-600 sticky top-0 shadow-md">
-                            <tr className="text-left text-base font-medium uppercase tracking-wider">
-                                <th className="p-2">Tanggal</th>
-                                <th className="p-2">Jumlah</th>
-                                <th className="p-2">Kategori</th>
-                                <th className="p-2 hidden">Deskripsi</th>
-                                <th className="p-2">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y">
-                            {reimbursementList.map((transaction) => (
-                                <tr key={transaction.id} className="hover:bg-gray-50 ">
-                                    <td className="px-2 py-4 whitespace-nowrap">
-                                        {transaction.date}
-                                    </td>
-                                    <td className="px-2 whitespace-nowrap text-end text-red-700">
-                                        {transaction.amount}
-                                    </td>
-                                    <td className="px-2 whitespace-nowrap capitalize">
-                                        {transaction.category || "-"}
-                                    </td>
-                                    <td className="px-2 whitespace-nowrap capitalize hidden">
-                                        {transaction.description || "-"}
-                                    </td>
-                                    <td className="px-2 whitespace-nowrap capitalize">
-                                        {transaction.reimbursement_status || "-"}
-                                    </td>
-                                    <td className="p-4 whitespace-nowrap flex justify-end">
-                                        <div
-                                            onClick={() => handleClick(transaction)}
-                                            role="button"
-                                            tabIndex={0}
-                                            className="inline-block flex items-center cursor-pointer hover:text-blue-600 transition-colors duration-200 group"
-                                        >
-                                            <ChevronRight className="h-6 w-fit transform group-hover:translate-x-1 transition-transform duration-200" />
-                                        </div>
-                                    </td>
-                                    {transaction.reimbursement_status == "pending" && (
-                                        <td className="p-2 whitespace-nowrap">
-                                            <button
-                                                onClick={() => handleButton(transaction.id)}
-                                                disabled={loading === transaction.id}
-                                                className={`px-4 py-2 text-white font-medium rounded ${loading === transaction.id
-                                                    ? "bg-gray-400 cursor-not-allowed"
-                                                    : "bg-blue-500 hover:bg-blue-600"
-                                                    }`}
-                                            >
-                                                {loading === transaction.id ? "Updating..." : "Update"}
-                                            </button>
-                                        </td>
-                                    )}
+                <div className="w-full h-full overflow-x-auto">
+                    {isLoading ? (
+                        <div className="h-full flex justify-center">
+                            <Loading />
+                        </div>
+                    ) :
+                        <table className="min-w-full bg-white rounded-lg">
+                            <thead className="bg-white text-gray-600 sticky top-0 shadow-md">
+                                <tr className="text-left text-base font-medium uppercase tracking-wider">
+                                    <th className="p-2">Tanggal</th>
+                                    <th className="p-2">Jumlah</th>
+                                    <th className="p-2">Kategori</th>
+                                    <th className="p-2 hidden">Deskripsi</th>
+                                    <th className="p-2">Status</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y">
+                                {reimbursementList.map((transaction) => (
+                                    <tr key={transaction.id} className="hover:bg-gray-50 ">
+                                        <td className="px-2 py-4 whitespace-nowrap">
+                                            {transaction.date}
+                                        </td>
+                                        <td className="px-2 whitespace-nowrap text-end text-red-700">
+                                            {transaction.amount}
+                                        </td>
+                                        <td className="px-2 whitespace-nowrap capitalize">
+                                            {transaction.category || "-"}
+                                        </td>
+                                        <td className="px-2 whitespace-nowrap capitalize hidden">
+                                            {transaction.description || "-"}
+                                        </td>
+                                        <td className="px-2 whitespace-nowrap capitalize">
+                                            {transaction.reimbursement_status || "-"}
+                                        </td>
+                                        <td className="p-4 whitespace-nowrap flex justify-end">
+                                            <div
+                                                onClick={() => handleClick(transaction)}
+                                                role="button"
+                                                tabIndex={0}
+                                                className="inline-block flex items-center cursor-pointer hover:text-blue-600 transition-colors duration-200 group"
+                                            >
+                                                <ChevronRight className="h-6 w-fit transform group-hover:translate-x-1 transition-transform duration-200" />
+                                            </div>
+                                        </td>
+                                        {transaction.reimbursement_status == "pending" && (
+                                            <td className="p-2 whitespace-nowrap">
+                                                <button
+                                                    onClick={() => handleButton(transaction.id)}
+                                                    disabled={loading === transaction.id}
+                                                    className={`px-4 py-2 text-white font-medium rounded ${loading === transaction.id
+                                                        ? "bg-gray-400 cursor-not-allowed"
+                                                        : "bg-blue-500 hover:bg-blue-600"
+                                                        }`}
+                                                >
+                                                    {loading === transaction.id ? "Updating..." : "Update"}
+                                                </button>
+                                            </td>
+                                        )}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    }
                     {selectedTransaction && (
                         <TransactionDetailCard
                             transaction={selectedTransaction}
