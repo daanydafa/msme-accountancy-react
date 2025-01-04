@@ -31,8 +31,6 @@ export default function Dashboard() {
   }, [currentMonth, currentYear]);
 
 
-  const { data, transactions } = monthlyReports;
-
   const renderTransactionsSection = () =>
     transactions ? (
       <DonutChart percentage={data.percentage} />
@@ -70,6 +68,8 @@ export default function Dashboard() {
   if (!monthlyReports) {
     return null;
   }
+
+  const { data, transactions } = monthlyReports;
 
   return (
     <div className="min-h-screen bg-gray-200 pt-40 pb-20">
