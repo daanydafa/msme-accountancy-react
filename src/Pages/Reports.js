@@ -62,20 +62,22 @@ export default function Reports() {
 
     if (!monthlyReports.transactions) {
         return (
-            <div className="mx-auto max-w-7xl bg-gray-200 py-10 tracking-wide text-xl text-gray-900">
-                <div className="space-y-5 mx-10">
-                    <div className="flex justify-end gap-4">
-                        <MonthSelectorInput
-                            selectedMonth={month}
-                            onChangeMonth={handleChangeMonth}
-                        />
-                        <YearSelectorInput
-                            selectedYear={year}
-                            onChangeYear={handleChangeYear}
-                        />
-                    </div>
-                    <div className="bg-white rounded-lg shadow p-6 text-center">
-                        <p className="text-gray-600">Belum ada transaksi pada bulan {getMonthName()} tahun {year}</p>
+            <div className="min-h-screen bg-gray-200 pt-40 pb-20">
+                <div className="mx-auto max-w-7xl py-10 tracking-wide text-xl text-gray-900">
+                    <div className="space-y-5 mx-10">
+                        <div className="flex justify-end gap-4">
+                            <MonthSelectorInput
+                                selectedMonth={month}
+                                onChangeMonth={handleChangeMonth}
+                            />
+                            <YearSelectorInput
+                                selectedYear={year}
+                                onChangeYear={handleChangeYear}
+                            />
+                        </div>
+                        <div className="bg-white rounded-lg shadow p-6 text-center">
+                            <p className="text-gray-600">Belum ada transaksi pada bulan {getMonthName()} tahun {year}</p>
+                        </div>
                     </div>
                 </div>
             </div>

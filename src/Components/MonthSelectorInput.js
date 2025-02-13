@@ -6,7 +6,7 @@ const MonthSelectorInput = ({
 }) => {
     const months = useMemo(() =>
         [...Array(12)].map((_, i) => ({
-            value: i + 1,
+            value: String(i + 1).padStart(2, '0'),
             label: new Date(0, i).toLocaleString('id-ID', { month: 'long' })
         })),
         []

@@ -22,7 +22,6 @@ export default function ProfileDetail() {
                 setIsLoading(false);
             }
         };
-
         fetchOrderDetail();
     }, []);
 

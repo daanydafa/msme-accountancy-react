@@ -3,14 +3,15 @@ import Login from './Pages/Login'
 import Dashboard from './Pages/Dashboard';
 import Orders from './Pages/Orders';
 import Reports from './Pages/Reports';
-import MainLayout from './Layouts/MainLayout';
 import OrderDetail from './Pages/OrderDetail';
-import DetailedLayout from './Layouts/DetailedLayout';
 import InputTransaction from './Pages/InputTransaction';
 import InputOrder from './Pages/InputOrder';
 import ProfileDetail from './Pages/ProfileDetail';
 import Loading from './Components/Loading';
 import { AuthProvider, useAuth } from './Contexts/AuthContext';
+
+import MainLayout from './Layouts/MainLayout';
+import DetailedLayout from './Layouts/DetailedLayout';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();

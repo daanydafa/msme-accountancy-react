@@ -62,11 +62,7 @@ export default function MainLayout() {
                     <div className="flex h-20 items-center justify-between">
                         <div className="flex items-center">
                             <div className="shrink-0">
-                                <img
-                                    alt="Your Company"
-                                    src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                                    className="h-10 w-fit"
-                                />
+                               <span className="font-medium rounded-full text-stone-50 capitalize text-xl "> MSME ACCOUNTANCY </span>
                             </div>
                         </div>
                         <div className="ml-4 flex items-center md:ml-6">
