@@ -6,7 +6,7 @@ const routeTitles = {
     '/orders/:id': 'Detail Pesanan',
     '/profile': 'Profil Pengguna',
     '/orders/:id/add-transaction': 'Tambah Transaksi',
-    '/orders/add': 'Buat Pesanan Baru'
+    '/orders': 'Buat Pesanan Baru'
 };
 
 export default function DetailedLayout() {
@@ -25,6 +25,8 @@ export default function DetailedLayout() {
                 .replace(/\//g, '\\/');
 
             const regex = new RegExp(`^${regexRoute}$`);
+            console.log(regex);
+            
             return regex.test(location.pathname);
         });
 

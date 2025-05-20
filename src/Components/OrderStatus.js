@@ -1,6 +1,6 @@
 export default function OrderStatus({ status, date, id }) {
     return (
-        <div className="w-full md:w-3/4 bg-base-100">
+        <div className="w-full bg-base-100">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-4 mt-2 border-b border-gray-300 ">
                 {(() => {
                     switch (status) {

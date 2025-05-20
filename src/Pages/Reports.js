@@ -1,13 +1,15 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+
 import AmountSummary from '../Components/AmountSummary';
 import TransactionTable from "../Components/TransactionTable";
 import ReimbursmentSummary from "../Components/ReimbursmentSummary";
 import DonutChart from '../Components/DonutChart';
-import { showReportsByMonth } from "../Services/Api";
 import Loading from '../Components/Loading';
 import MonthSelectorInput from '../Components/MonthSelectorInput';
 import YearSelectorInput from '../Components/YearSelectorInput';
+
+import { showReportsByMonth } from "../Services/Api";
 
 export default function Reports() {
     const [monthlyReports, setMonthlyReports] = useState(null);
@@ -16,13 +18,11 @@ export default function Reports() {
     const navigate = useNavigate();
     const { month, year } = useParams();
 
-    const handleChangeMonth = (e) => {
-        const newMonth = e.target.value;
+    const handleChangeMonth = newMonth => {
         navigate(`/reports/${newMonth}/${year}`);
     };
 
-    const handleChangeYear = (e) => {
-        const newYear = e.target.value;
+    const handleChangeYear = newYear => {
         if (newYear >= 2000 && newYear <= 2100) {
             navigate(`/reports/${month}/${newYear}`);
         }

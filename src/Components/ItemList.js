@@ -1,5 +1,3 @@
-import StatusBadge from "./StatusBadge";
-
 export default function ItemList({ items }) {
     return !items ? noItem() : isItems(items)
 }

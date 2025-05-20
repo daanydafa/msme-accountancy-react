@@ -1,6 +1,5 @@
 import { useState } from "react";
 import StatusBadge from "./StatusBadge";
-import { useNavigate } from 'react-router-dom';
 import TransactionDetailCard from "./TransactionDetailCard";
 
 export default function TransactionList({ transactions }) {

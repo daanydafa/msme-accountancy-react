@@ -1,6 +1,6 @@
 import { Disclosure, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronRight, DashboardIcon, OrderIcon, ReportIcon } from '../Asset/Icon';
-import { Outlet, useNavigate, useLocation, useOutletContext } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../Contexts/AuthContext';
 
@@ -62,7 +62,7 @@ export default function MainLayout() {
                     <div className="flex h-20 items-center justify-between">
                         <div className="flex items-center">
                             <div className="shrink-0">
-                               <span className="font-medium rounded-full text-stone-50 capitalize text-xl "> MSME ACCOUNTANCY </span>
+                                <span className="font-medium rounded-full text-stone-50 capitalize text-xl "> MSME ACCOUNTANCY </span>
                             </div>
                         </div>
                         <div className="ml-4 flex items-center md:ml-6">

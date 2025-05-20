@@ -60,7 +60,7 @@ export default function OrderDetail() {
     return (
         <div className="mx-auto max-w-7xl bg-gray-200 text-gray-900 text-xl tracking-wide pt-24">
             <div className="overflow-hidden  bg-white mb-2 px-8 py-4">
-                <div className='flex justify-center flex-col lg:flex-row lg:flex-wrap lg:items-stretch items-center'>
+                <div className='flex justify-center flex-col items-center'>
                     <OrderStatus
                         status={data.status}
                         id={data.id}
@@ -70,7 +70,7 @@ export default function OrderDetail() {
             <div className="overflow-hidden bg-white mb-2 px-8 py-4">
                 <h2 className="text-2xl font-bold mb-6 mt-2">
                     Daftar Pesanan</h2>
-                <div className='flex justify-center flex-col lg:flex-row lg:flex-wrap lg:items-stretch items-center'>
+                <div className='flex justify-center flex-col items-center'>
                     <ItemList items={data.items} />
                 </div>
             </div>

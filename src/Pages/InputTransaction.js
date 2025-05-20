@@ -87,9 +87,15 @@ const InputTransaction = () => {
 
     const handleSubmit = async (data) => {
         data.order_id = id;
+
+        if (data.type !== 'expense' || data.detailed_type !== 'operational') {
+            delete data.category;
+        }
+
         setErrors({});
+        setIsLoading(true);
+        
         try {
-            setIsLoading(true);
             await createTransaction(data);
             navigate(-1);
             setTimeout(() => {

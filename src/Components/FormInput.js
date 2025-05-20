@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 const FormInput = ({ fields, dynamicFields = [], onSubmit, initialData = {}, validator, context, onTypeChange, onDetailedTypeChange }) => {
     const [values, setValues] = useState(initialData);
     const [errors, setErrors] = useState({});
-    const [dynamicValues, setDynamicValues] = useState([1]);
+    const [dynamicValues, setDynamicValues] = useState([{}]);
     const [conditionalFields, setConditionalFields] = useState([]);
 
     useEffect(() => {

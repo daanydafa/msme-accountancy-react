@@ -45,16 +45,12 @@ class AuthService {
         await this.axiosInstance.post('/logout');
       }
     } finally {
-      this.clearSession();
+      localStorage.clear();
     }
   }
 
   getToken() {
     return localStorage.getItem('token');
-  }
-
-  clearSession() {
-    localStorage.clear();
   }
 
   isAuthenticated() {
